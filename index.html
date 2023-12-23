@@ -1,38 +1,74 @@
-
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
     <script>
-        var secretKey = "349A2C36-EDFD-42CE-8E0B-7131C7CC0714";
-        var scriptId = "64323b382350023ad68d7c21";
-        var currentNodeId = "_BEGIN";
-</script>
-<div class="containerChat">
-    <div class="chatbox" style="position:fixed">
+      var secretKey = "F085BCF2-8919-4F3A-9317-4FF78DC74917";
+      var scriptId = "658312d799d6aa16f208d944";
+      var currentNodeId = "_BEGIN";
+    </script>
+    <div class="containerChat">
+      <div class="chatbox" style="position: fixed">
         <div class="chatbox__support">
-            <div class="chatbox__header">
-                <div class="chatbox__content--header">
-                    <h4 class="chatbox__heading--header">Chat support</h4>
-                </div>
+          <div class="chatbox__header">
+            <div class="chatbox__content--header">
+              <h4 class="chatbox__heading--header">Chat support</h4>
             </div>
-            <div class="chatbox__messages">
-                    
-                <button class="btn-rec Rec" >Recording</button>
-            </div>
-            <div class="chatbox__footer">
-                <img src="./emojis.svg" alt="">
-                <img src="./microphone.svg" alt="" onclick="recognizeVoice()">
-                <input type="text" placeholder="Write a message..." id="inputMessage">
-                <p class="chatbox__send--footer" id="btnSend" onclick="handleSendMsg()" style="margin-top:16px">Send</p>
-                <img src="./attachment.svg" alt="">
-            </div>
+          </div>
+          <div class="chatbox__messages">
+            <button class="btn-rec Rec">Recording</button>
+          </div>
+          <div class="chatbox__footer">
+            <img
+              src="https://cdn.jsdelivr.net/gh/thienan01/new/emojis.svg"
+              alt=""
+            />
+            <img
+              src="https://cdn.jsdelivr.net/gh/thienan01/new/microphone.svg"
+              alt=""
+              onclick="recognizeVoice()"
+            />
+            <input
+              type="text"
+              placeholder="Write a message..."
+              id="inputMessage"
+            />
+            <p
+              class="chatbox__send--footer"
+              id="btnSend"
+              onclick="handleSendMsg()"
+              style="margin-top: 16px"
+            >
+              Send
+            </p>
+            <img
+              src="https://cdn.jsdelivr.net/gh/thienan01/new/attachment.svg"
+              alt=""
+            />
+          </div>
         </div>
-        
-        <div class="chatbox__button">
-            <button>button</button>
-        </div>
-    </div>
-</div>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./chat.css">
-<script src="https://kit.fontawesome.com/6a72490e9a.js" crossorigin="anonymous"></script>
 
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="./handleChat.js"></script>
+        <div class="chatbox__button">
+          <button>button</button>
+        </div>
+      </div>
+    </div>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./chat.css" />
+    <script
+      src="https://kit.fontawesome.com/6a72490e9a.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="./handleChat.js"></script>
+  </body>
+</html>
