@@ -152,7 +152,8 @@ const handleReMsg = () => {
       currentNodeId = result.current_node_id;
       if (currentNodeId != "_END") {
         if (result.message != null && result.message.trim() != "") {
-          receiverHTML = receiverHTML.replace("Content", result.message);
+          var convertedString = result.message.replace(/\n/g, "<br>");
+          receiverHTML = receiverHTML.replace("Content", convertedString);
           $(".chatbox__messages").prepend(receiverHTML);
           receiverHTML = `<div class="messages__item messages__item--visitor">Content</div>`;
         }
