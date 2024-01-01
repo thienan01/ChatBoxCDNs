@@ -110,10 +110,11 @@ const recognizeVoice = () => {
     console.error("Web Speech API is not supported in this browser.");
   }
 };
+let sessionId = uniqueID()
 
 const handleSendMsg = () => {
   let senderHTML = `<div class="messages__item messages__item--operator">Content</div>`;
-  let receiverHTML = `<div class="messages__item messages__item--visitor">Content</div>`;
+  //let receiverHTML = `<div class="messages__item messages__item--visitor">Content</div>`;
   let msg = $("#inputMessage").val();
   senderHTML = senderHTML.replace("Content", msg);
   $(".chatbox__messages").prepend(senderHTML);
@@ -124,16 +125,39 @@ const handleSendMsg = () => {
     current_node_id: currentNodeId,
     message: msg,
     is_trying: true,
-    session_id: uniqueID(),
+    session_id: sessionId,
   };
 
   $.ajax({
-    url: "http://103.200.20.180:8085/api/training/predict",
+    url: "http://14.225.207.19:8085/api/training/predict",
     type: "POST",
     contentType: "application/json",
     data: JSON.stringify(request),
     success: function (result) {
-      if (result.http_status == "OK") {
+      //if (result.http_status == "OK") {
+        // currentNodeId = result.current_node_id;
+        // if (currentNodeId != "_END") {
+        //   if (result.message != null && result.message.trim() != "") {
+        //     receiverHTML = receiverHTML.replace("Content", result.message);
+        //     $(".chatbox__messages").prepend(receiverHTML);
+        //   }
+        // }
+     // }
+      return result;
+    },
+    error: function (error) {
+      console.log(error);
+    },
+  });
+};
+const handleReMsg = () => {
+  let receiverHTML = `<div class="messages__item messages__item--visitor">Content</div>`;
+  const socket =  new SockJS( 'http://14.225.207.19:8085/api/ws_endpoint');
+  stompClient = Stomp.over(socket);
+  stompClient.connect({}, function (frame) {
+    const topic = `/chat/${sessionId}/receive-from-bot`;
+    stompClient.subscribe(topic, function (response) {
+      let result = JSON.parse(response.body);
         currentNodeId = result.current_node_id;
         if (currentNodeId != "_END") {
           if (result.message != null && result.message.trim() != "") {
@@ -141,11 +165,10 @@ const handleSendMsg = () => {
             $(".chatbox__messages").prepend(receiverHTML);
           }
         }
-      }
-      return result;
-    },
-    error: function (error) {
-      console.log(error);
-    },
+    });
   });
+}
+
+window.onload = function() {
+  handleReMsg();
 };
